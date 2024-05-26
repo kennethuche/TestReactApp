@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Student } from '../services/studentService';
 import { formatDate } from '../utils/dateUtils';
@@ -13,7 +12,8 @@ interface StudentListProps {
 const StudentList: React.FC<StudentListProps> = ({ students, onEdit, onDelete, onBookHoliday }) => {
     return (
         <div>
-            <h2>Students</h2>
+            <h2 className="text-center">Students List</h2>
+
             <table className="table table-bordered">
                 <thead>
                     <tr>
@@ -37,15 +37,16 @@ const StudentList: React.FC<StudentListProps> = ({ students, onEdit, onDelete, o
                                     ))}
                                 </ul>
                             </td>
-                            <td>
-                                <button className="btn btn-primary me-2" onClick={() => onEdit(student)}>Edit</button>
-                                <button className="btn btn-secondary me-2" onClick={() => onBookHoliday(student)}>Book Holiday</button>
+                            <td  className="d-flex align-items-center">
+                                <button className="btn btn-primary me-3" onClick={() => onEdit(student)}>Edit</button>
+                                <button className="btn btn-secondary me-3" onClick={() => onBookHoliday(student)}>Book Holiday</button>
                                 <button className="btn btn-danger" onClick={() => onDelete(student.id!)}>Delete</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
         </div>
     );
 };
