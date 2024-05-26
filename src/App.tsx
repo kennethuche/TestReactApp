@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { getStudents, createStudent, updateStudent, bookHoliday, deleteStudent, Student, Holiday } from './services/studentService';
 import StudentList from './components/StudentList';
 import StudentFormModal from './components/StudentFormModal';
@@ -11,6 +12,7 @@ const App: React.FC = () => {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [showHolidayModal, setShowHolidayModal] = useState(false);
     const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+
 
     useEffect(() => {
         loadStudents();
@@ -47,8 +49,13 @@ const App: React.FC = () => {
 
     return (
         <div className="container">
-            <h1 className="my-4">EC Test</h1>
-            <button className="btn btn-primary mb-4" onClick={() => setShowAddModal(true)}>Add Student</button>
+            <div className="header"><h1 className="my-4">EC Test</h1>
+                <button className="btn btn-primary mb-4" onClick={() => {
+                    setShowAddModal(true)
+                }}>Add Student
+                </button>
+            </div>
+
             <StudentList
                 students={students}
                 onEdit={(student) => {

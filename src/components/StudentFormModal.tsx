@@ -93,7 +93,7 @@ const StudentFormModal: React.FC<StudentFormModalProps> = ({ show, onHide, onSav
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group controlId="formFullName">
+                    <Form.Group className="mb-3" controlId="formFullName">
                         <Form.Label>Full Name</Form.Label>
                         <Form.Control
                             type="text"
@@ -101,7 +101,7 @@ const StudentFormModal: React.FC<StudentFormModalProps> = ({ show, onHide, onSav
                             onChange={(e) => setFullName(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId="formEmail">
+                    <Form.Group controlId="formEmail" className="mb-3">
                         <Form.Label>Email</Form.Label>
                         <Form.Control
                             type="email"
@@ -109,10 +109,10 @@ const StudentFormModal: React.FC<StudentFormModalProps> = ({ show, onHide, onSav
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Label>Courses</Form.Label>
+                    <Form.Label className="fw-bold">Courses</Form.Label>
                     {courses.map((course, index) => (
                         <div key={index}>
-                            <Form.Group controlId={`formCourseName${index}`}>
+                            <Form.Group className="mb-3" controlId={`formCourseName${index}`}>
                                 <Form.Label>Course Name</Form.Label>
                                 <Form.Control
                                     type="text"
@@ -120,9 +120,10 @@ const StudentFormModal: React.FC<StudentFormModalProps> = ({ show, onHide, onSav
                                     onChange={(e) => handleCourseChange(index, 'courseName', e.target.value)}
                                 />
                             </Form.Group>
-                            <Form.Group controlId={`formStartDate${index}`}>
+                            <Form.Group className="mb-3" controlId={`formStartDate${index}`}>
                                 <Form.Label>Start Date</Form.Label>
                                 <Form.Control
+                                    className="date"
                                     type="date"
                                     value={course.startDate}
                                     onChange={(e) => handleCourseChange(index, 'startDate', e.target.value)}
@@ -131,9 +132,10 @@ const StudentFormModal: React.FC<StudentFormModalProps> = ({ show, onHide, onSav
                                     <Form.Text className="text-danger">{errors[index].startDate}</Form.Text>
                                 )}
                             </Form.Group>
-                            <Form.Group controlId={`formEndDate${index}`}>
+                            <Form.Group className="mb-3" controlId={`formEndDate${index}`}>
                                 <Form.Label>End Date</Form.Label>
                                 <Form.Control
+                                    className="date"
                                     type="date"
                                     value={course.endDate}
                                     onChange={(e) => handleCourseChange(index, 'endDate', e.target.value)}
