@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { Student, Course } from '../services/studentService';
+import { Course, UpdateStudentModalProps } from '../interfaces/student';
 
-interface UpdateStudentModalProps {
-    show: boolean;
-    onHide: () => void;
-    onUpdate: (student: Student) => void;
-    student: Student | null;
-}
 
 const UpdateStudentModal: React.FC<UpdateStudentModalProps> = ({ show, onHide, onUpdate, student }) => {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
-    const [courses, setCourses] = useState<Course[]>([{ courseName: '', startDate: '', endDate: '' }]);
+    const [courses, setCourses] = useState<Course[]>([{
+        courseName: '', startDate: '', endDate: '',
+        id: '',
+        numberOfTutionWeek: 0,
+        studentId: ''
+    }]);
     const [errors, setErrors] = useState<{ [key: number]: { startDate?: string; endDate?: string } }>({});
 
     useEffect(() => {
@@ -86,7 +85,12 @@ const UpdateStudentModal: React.FC<UpdateStudentModalProps> = ({ show, onHide, o
             onUpdate({ ...student, fullName, email, courses });
             setFullName('');
             setEmail('');
-            setCourses([{ courseName: '', startDate: '', endDate: '' }]);
+            setCourses([{
+                courseName: '', startDate: '', endDate: '',
+                id: '',
+                numberOfTutionWeek: 0,
+                studentId: ''
+            }]);
             onHide();
         }
     };
