@@ -20,6 +20,7 @@ const StudentList: React.FC<StudentListProps> = ({ students, onEdit, onDelete, o
                         <th>Name</th>
                         <th>Email</th>
                         <th>Courses</th>
+                        <th>Holidays</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -32,12 +33,21 @@ const StudentList: React.FC<StudentListProps> = ({ students, onEdit, onDelete, o
                                 <ul>
                                     {student.courses.map(course => (
                                         <li key={course.id}>
-                                            {course.courseName} ({formatDate(course.startDate)} - {formatDate(course.endDate)})
+                                            {course.courseName} ({formatDate(course.startDate)} - {formatDate(course.endDate)}) - {course.numberOfTutionWeek} week(s)
                                         </li>
                                     ))}
                                 </ul>
                             </td>
-                            <td  className="d-flex align-items-center">
+                            <td>
+                                <ul>
+                                    {student.holidays.map(holiday => (
+                                        <li key={holiday.id}>
+                                            {formatDate(holiday.startDate)} - {formatDate(holiday.endDate)}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </td>
+                            <td className="d-flex align-items-center">
                                 <button className="btn btn-primary me-3" onClick={() => onEdit(student)}>Edit</button>
                                 <button className="btn btn-secondary me-3" onClick={() => onBookHoliday(student)}>Book Holiday</button>
                                 <button className="btn btn-danger" onClick={() => onDelete(student.id!)}>Delete</button>
@@ -46,7 +56,6 @@ const StudentList: React.FC<StudentListProps> = ({ students, onEdit, onDelete, o
                     ))}
                 </tbody>
             </table>
-
         </div>
     );
 };

@@ -4,23 +4,27 @@ import axios from 'axios';
 const API_URL = 'https://localhost:44341/api/Student'; 
 
 export interface Course {
-    id?: string;
+    id: string;
     courseName: string;
     startDate: string;
     endDate: string;
-    studentId?: string;
+    numberOfTutionWeek: number;
+    studentId: string;
 }
 
 export interface Student {
-    id?: string;
+    id: string;
     fullName: string;
     email: string;
     courses: Course[];
+    holidays: Holiday[];
 }
 
 export interface Holiday {
-    holidayStart: string;
-    holidayEnd: string;
+    id: string;
+    startDate: string;
+    endDate: string;
+    studentId: string;
 }
 
 export const getStudents = () => {
