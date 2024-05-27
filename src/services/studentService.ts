@@ -1,48 +1,25 @@
 
 import axios from 'axios';
-
-const API_URL = 'https://localhost:44341/api/Student'; 
-
-export interface Course {
-    id: string;
-    courseName: string;
-    startDate: string;
-    endDate: string;
-    numberOfTutionWeek: number;
-    studentId: string;
-}
-
-export interface Student {
-    id: string;
-    fullName: string;
-    email: string;
-    courses: Course[];
-    holidays: Holiday[];
-}
-
-export interface Holiday {
-    id: string;
-    startDate: string;
-    endDate: string;
-    studentId: string;
-}
+import { BASE_URL } from '../constant';
+import { Holiday } from '../interfaces/holiday';
+import { Student } from '../interfaces/student';
 
 export const getStudents = () => {
-    return axios.get<Student[]>(`${API_URL}`);
+    return axios.get<Student[]>(`${BASE_URL}`);
 };
 
 export const createStudent = (student: Student) => {
-    return axios.post<Student>(`${API_URL}`, student);
+    return axios.post<Student>(`${BASE_URL}`, student);
 };
 
 export const updateStudent = (id: string, student: Student) => {
-    return axios.put<Student>(`${API_URL}/${id}`, student);
+    return axios.put<Student>(`${BASE_URL}/${id}`, student);
 };
 
 export const bookHoliday = (id: string, holiday: Holiday) => {
-    return axios.post<void>(`${API_URL}/${id}/holiday`, holiday);
+    return axios.post<void>(`${BASE_URL}/${id}/holiday`, holiday);
 };
 
 export const deleteStudent = (id: string) => {
-    return axios.delete<void>(`${API_URL}/${id}`);
+    return axios.delete<void>(`${BASE_URL}/${id}`);
 };

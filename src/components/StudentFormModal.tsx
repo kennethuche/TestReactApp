@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { Student, Course } from '../services/studentService';
+import { Course, StudentFormModalProps } from '../interfaces/student';
 
-interface StudentFormModalProps {
-    show: boolean;
-    onHide: () => void;
-    onSave: (student: Student) => void;
-}
 
 const StudentFormModal: React.FC<StudentFormModalProps> = ({ show, onHide, onSave }) => {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
-    const [courses, setCourses] = useState<Course[]>([{ courseName: '', startDate: '', endDate: '' }]);
+    const [courses, setCourses] = useState<Course[]>([{
+        courseName: '', startDate: '', endDate: '',
+        id: '',
+        numberOfTutionWeek: 0,
+        studentId: ''
+    }]);
     const [errors, setErrors] = useState<{ [key: number]: { startDate?: string; endDate?: string } }>({});
 
     const handleAddCourse = () => {
-        setCourses([...courses, { courseName: '', startDate: '', endDate: '' }]);
+        setCourses([...courses, {
+            courseName: '', startDate: '', endDate: '',
+            id: '',
+            numberOfTutionWeek: 0,
+            studentId: ''
+        }]);
     };
 
     const handleCourseChange = (index: number, field: string, value: string) => {
@@ -78,10 +83,19 @@ const StudentFormModal: React.FC<StudentFormModalProps> = ({ show, onHide, onSav
         });
 
         if (valid) {
-            onSave({ fullName, email, courses });
+            onSave({
+                fullName, email, courses,
+                id: '',
+                holidays: []
+            });
             setFullName('');
             setEmail('');
-            setCourses([{ courseName: '', startDate: '', endDate: '' }]);
+            setCourses([{
+                courseName: '', startDate: '', endDate: '',
+                id: '',
+                numberOfTutionWeek: 0,
+                studentId: ''
+            }]);
             onHide();
         }
     };

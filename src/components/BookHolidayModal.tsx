@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { Holiday } from '../services/studentService';
+import { BookHolidayModalProps } from '../interfaces/holiday';
 
-interface BookHolidayModalProps {
-    show: boolean;
-    onHide: () => void;
-    onBook: (holiday: Holiday) => void;
-}
+
 
 const BookHolidayModal: React.FC<BookHolidayModalProps> = ({ show, onHide, onBook }) => {
     const [holidayStart, setHolidayStart] = useState('');
@@ -36,7 +32,7 @@ const BookHolidayModal: React.FC<BookHolidayModalProps> = ({ show, onHide, onBoo
             return;
         }
 
-        onBook({ holidayStart, holidayEnd });
+        onBook({ holidayStart:holidayStart, holidayEnd:holidayEnd });
         setHolidayStart('');
         setHolidayEnd('');
         setErrors({});

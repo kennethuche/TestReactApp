@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://localhost:44341/api/Student'; 

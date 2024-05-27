@@ -1,13 +1,8 @@
 import React from 'react';
-import { Student } from '../services/studentService';
 import { formatDate } from '../utils/dateUtils';
+import { StudentListProps } from '../interfaces/student';
 
-interface StudentListProps {
-    students: Student[];
-    onEdit: (student: Student) => void;
-    onDelete: (id: string) => void;
-    onBookHoliday: (student: Student) => void;
-}
+
 
 const StudentList: React.FC<StudentListProps> = ({ students, onEdit, onDelete, onBookHoliday }) => {
     return (
@@ -40,9 +35,9 @@ const StudentList: React.FC<StudentListProps> = ({ students, onEdit, onDelete, o
                             </td>
                             <td>
                                 <ul>
-                                    {student.holidays.map(holiday => (
-                                        <li key={holiday.id}>
-                                            {formatDate(holiday.startDate)} - {formatDate(holiday.endDate)}
+                                    {student.holidays.map(h => (
+                                        <li key={student.id}>
+                                            {formatDate(h.startDate)} - {formatDate(h.endDate)}
                                         </li>
                                     ))}
                                 </ul>
